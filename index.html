@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atalay Hukuk & Danışmanlık</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1a2744;--navy-dark:#101a30;
+  --gold:#b8975a;--gold-light:#d4af7a;
+  --cream:#f8f5ef;
+  --text:#2c2c2c;--text-light:#6b6b6b;--white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',Arial,sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 60px;
+  background:rgba(16,26,48,0.98);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(184,151,90,0.2);
+  transition:padding .3s;
+}
+nav.scrolled{padding:10px 60px}
+.nav-links{display:flex;gap:38px;list-style:none}
+.nav-links a{
+  color:rgba(255,255,255,0.8);text-decoration:none;
+  font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;
+  transition:color .3s;position:relative;
+}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-links a:hover::after{width:100%}
+
+/* HERO */
+#hero{
+  min-height:100vh;background:var(--navy-dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 55% at 50% 85%,rgba(184,151,90,0.09) 0%,transparent 70%);
+}
+.ring{position:absolute;border:1px solid rgba(184,151,90,0.08);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+.ring:nth-child(1){width:500px;height:500px}
+.ring:nth-child(2){width:820px;height:820px}
+.ring:nth-child(3){width:1140px;height:1140px}
+.hero-content{position:relative;z-index:2;padding:0 24px;animation:fadeUp 1.1s ease forwards}
+.hero-divider{width:48px;height:1px;background:var(--gold);margin:28px auto 24px}
+.hero-tagline{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(20px,3vw,34px);font-weight:300;font-style:italic;
+  color:rgba(255,255,255,0.72);max-width:580px;line-height:1.65;
+}
+.hero-tagline em{color:var(--gold-light);font-style:italic}
+.hero-sub{margin-top:18px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.26)}
+.hero-scroll{
+  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,0.2);font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  animation:bounce 2s infinite;
+}
+.hero-scroll::after{content:'';display:block;width:1px;height:34px;background:linear-gradient(to bottom,rgba(184,151,90,0.4),transparent)}
+
+/* SHARED */
+.sec-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.sec-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,4vw,50px);font-weight:500;color:var(--navy);line-height:1.15;margin-bottom:22px}
+.sec-title-w{color:var(--white)}
+.gold-line{width:44px;height:2px;background:var(--gold);margin-bottom:32px}
+.gold-line-c{margin-left:auto;margin-right:auto}
+
+/* HAKKIMIZDA */
+#hakkimizda{background:var(--cream);padding:100px 60px}
+.about-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-p{font-size:14px;line-height:1.95;color:var(--text-light);font-weight:300;margin-bottom:18px}
+.about-p strong{color:var(--navy);font-weight:500}
+.about-card{background:var(--navy);padding:52px 44px;position:relative;overflow:hidden}
+.about-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:linear-gradient(to right,var(--gold),transparent)}
+.about-card-ql{font-family:'Cormorant Garamond',Georgia,serif;font-size:64px;color:var(--gold);opacity:.22;line-height:1;margin-bottom:4px}
+.about-card-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-style:italic;color:rgba(255,255,255,.88);line-height:1.65;margin-bottom:26px}
+.about-card-name{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+
+/* FAALIYET */
+#faaliyet{background:var(--navy-dark);padding:100px 60px}
+.faal-intro{max-width:840px;margin:0 auto 60px;text-align:center}
+.faal-intro .gold-line{margin:0 auto 32px}
+.faal-intro-p{font-size:14px;line-height:1.9;color:rgba(255,255,255,.42);font-weight:300}
+.faal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1240px;margin:0 auto}
+.faal-card{
+  background:rgba(255,255,255,.025);border:1px solid rgba(184,151,90,.1);
+  padding:40px 32px;cursor:pointer;position:relative;overflow:hidden;
+  transition:background .3s,border-color .3s;
+}
+.faal-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s}
+.faal-card:hover{background:rgba(184,151,90,.06);border-color:rgba(184,151,90,.28)}
+.faal-card:hover::before{width:100%}
+.faal-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:44px;font-weight:300;color:rgba(184,151,90,.18);line-height:1;margin-bottom:14px}
+.faal-name{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px}
+.faal-desc{font-size:13px;line-height:1.8;color:rgba(255,255,255,.44);font-weight:300;margin-bottom:14px}
+.faal-list{list-style:none;display:none}
+.faal-card.expanded .faal-list{display:block}
+.faal-list li{font-size:12px;color:rgba(255,255,255,.36);padding:5px 0 5px 14px;border-bottom:1px solid rgba(255,255,255,.04);position:relative;font-weight:300}
+.faal-list li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:.5}
+.faal-toggle{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:.65;margin-top:14px;display:inline-block}
+.faal-deco{background:rgba(184,151,90,.04);border:1px solid rgba(184,151,90,.12);padding:60px 40px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.faal-deco-icon{font-size:52px;color:rgba(184,151,90,.3);margin-bottom:16px}
+.faal-deco-text{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(184,151,90,.45);line-height:2.2}
+
+/* İLETİŞİM */
+#iletisim{background:var(--cream);padding:100px 60px}
+.contact-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-block{margin-bottom:34px}
+.contact-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.contact-val{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;color:var(--navy);line-height:1.6}
+.contact-val a{color:var(--navy);text-decoration:none;transition:color .3s}
+.contact-val a:hover{color:var(--gold)}
+.contact-form{display:flex;flex-direction:column;gap:18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-light)}
+.form-group input,.form-group textarea,.form-group select{
+  background:transparent;border:none;border-bottom:1px solid rgba(26,39,68,.18);
+  padding:10px 0;font-family:'Montserrat',Arial,sans-serif;
+  font-size:13px;color:var(--text);outline:none;transition:border-color .3s;
+  appearance:none;-webkit-appearance:none;
+}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold)}
+.form-group textarea{resize:none;height:96px}
+.btn-submit{
+  background:var(--navy);color:var(--white);border:none;
+  padding:15px 38px;font-family:'Montserrat',Arial,sans-serif;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;transition:background .3s,transform .2s;align-self:flex-start;
+}
+.btn-submit:hover{background:var(--gold);transform:translateY(-2px)}
+#form-success{display:none;font-size:12px;color:var(--gold);margin-top:6px;letter-spacing:1px}
+
+/* FOOTER */
+footer{
+  background:var(--navy-dark);padding:44px 60px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(184,151,90,.15);
+}
+.footer-copy{font-size:10px;color:rgba(255,255,255,.22);letter-spacing:2px;text-transform:uppercase}
+.footer-links{display:flex;gap:22px}
+.footer-links a{color:rgba(255,255,255,.28);text-decoration:none;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:14px 24px}
+  .nav-links{gap:18px}
+  #hakkimizda,#iletisim,#faaliyet{padding:70px 24px}
+  .about-inner,.contact-inner{grid-template-columns:1fr;gap:48px}
+  .faal-grid{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:18px;text-align:center;padding:36px 24px}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 52" style="height:46px;display:block">
+    <!-- Gavel + A icon -->
+    <g transform="translate(2,4)">
+      <!-- A strokes -->
+      <line x1="20" y1="40" x2="31" y2="10" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <line x1="31" y1="10" x2="42" y2="40" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <line x1="24" y1="28" x2="38" y2="28" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- gavel head -->
+      <rect x="22" y="6" width="16" height="8" rx="2" fill="#d4af7a" transform="rotate(-32,30,10)"/>
+      <!-- gavel handle -->
+      <line x1="34" y1="16" x2="46" y2="32" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- base -->
+      <rect x="20" y="40" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+    </g>
+    <!-- Text -->
+    <text x="58" y="31" font-family="'Cormorant Garamond',Georgia,serif" font-size="28" font-weight="600" fill="white" letter-spacing="3">ATALAY</text>
+    <text x="59" y="45" font-family="'Montserrat',Arial,sans-serif" font-size="8" font-weight="400" fill="rgba(184,151,90,0.85)" letter-spacing="3.5">HUKUK &amp; DANIŞMANLIK</text>
+  </svg>
+
+  <ul class="nav-links">
+    <li><a href="#hero">Ana Sayfa</a></li>
+    <li><a href="#faaliyet">Faaliyet Alanlarımız</a></li>
+    <li><a href="#hakkimizda">Hakkımızda</a></li>
+    <li><a href="#iletisim">İletişim</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+
+  <div class="hero-content">
+    <!-- Big SVG Logo -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" style="width:160px;margin-bottom:6px;display:block;margin-left:auto;margin-right:auto">
+      <!-- big A -->
+      <line x1="46" y1="165" x2="100" y2="28" stroke="white" stroke-width="7" stroke-linecap="round"/>
+      <line x1="100" y1="28" x2="154" y2="165" stroke="white" stroke-width="7" stroke-linecap="round"/>
+      <line x1="66" y1="115" x2="134" y2="115" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      <!-- big gavel head -->
+      <rect x="54" y="22" width="44" height="19" rx="5" fill="rgba(184,151,90,0.85)" transform="rotate(-36,76,31)"/>
+      <!-- gavel handle -->
+      <line x1="98" y1="50" x2="152" y2="116" stroke="rgba(255,255,255,0.8)" stroke-width="6.5" stroke-linecap="round"/>
+      <!-- base -->
+      <rect x="76" y="165" width="48" height="8" rx="3" fill="rgba(255,255,255,0.3)"/>
+      <rect x="68" y="173" width="64" height="5" rx="2" fill="rgba(255,255,255,0.15)"/>
+      <!-- ATALAY -->
+      <text x="100" y="205" font-family="'Cormorant Garamond',Georgia,serif" font-size="34" font-weight="600" fill="white" text-anchor="middle" letter-spacing="5">ATALAY</text>
+    </svg>
+
+    <div class="hero-divider"></div>
+    <p class="hero-tagline"><em>"Adalet, karanlıkta parlayan bir yıldız gibidir."</em></p>
+    <p class="hero-sub">Hukuk &amp; Danışmanlık · Erzurum</p>
+  </div>
+  <div class="hero-scroll">Keşfet</div>
+</section>
+
+<!-- HAKKIMIZDA -->
+<section id="hakkimizda">
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <p class="sec-label">Hakkımızda</p>
+      <h2 class="sec-title">Av. Hasan Polatkan Atalay</h2>
+      <div class="gold-line"></div>
+      <p class="about-p">
+        <strong>Atalay Hukuk & Danışmanlık</strong>, Av. Hasan Polatkan Atalay tarafından kurulmuş olup müvekkillerine ülke genelinde yüksek standartlarda avukatlık ve hukuki danışmanlık hizmeti sunmaktadır.
+      </p>
+      <p class="about-p">
+        Güvenilir, şeffaf ve çözüm odaklı bir yaklaşımı benimseyen büromuz; başta ceza hukuku, aile hukuku, iş hukuku, icra ve iflas hukuku, sigorta hukuku, idare hukuku, vergi hukuku ve ticaret hukuku olmak üzere geniş bir alanda faaliyet göstermektedir.
+      </p>
+      <p class="about-p">
+        Sahip olduğumuz bilgi birikimi ve tecrübeyle, bireysel ve kurumsal müvekkillerimizin ihtiyaçlarına özel, net ve sonuç odaklı çözümler üretmekteyiz.
+      </p>
+    </div>
+    <div class="reveal">
+      <div class="about-card">
+        <div class="about-card-ql">"</div>
+        <p class="about-card-text">Adalet, karanlıkta parlayan bir yıldız gibidir. Biz o ışığı müvekkillerimiz için yakarız.</p>
+        <p class="about-card-name">Av. Hasan Polatkan Atalay</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAALIYET ALANLARI -->
+<section id="faaliyet">
+  <div class="faal-intro reveal">
+    <p class="sec-label" style="color:var(--gold-light)">Uzmanlık Alanları</p>
+    <h2 class="sec-title sec-title-w">Faaliyet Alanlarımız</h2>
+    <div class="gold-line gold-line-c"></div>
+    <p class="faal-intro-p">Atalay Hukuk & Danışmanlık olarak, müvekkillerimizin haklarını en iyi şekilde korumak için geniş bir hukuk alanında profesyonel hizmet sunmaktayız.</p>
+  </div>
+
+  <div class="faal-grid">
+
+    <div class="faal-card reveal" onclick="toggleCard(this)">
+      <div class="faal-num">01</div>
+      <div class="faal-name">Ceza Hukuku</div>
+      <p class="faal-desc">Soruşturma ve kovuşturma süreçlerinin her aşamasında kapsamlı hukuki destek.</p>
+      <ul class="faal-list">
+        <li>Ağır ceza ve asliye ceza mahkemesi davaları</li>
+        <li>Bilişim suçlarına ilişkin ceza davaları</li>
+        <li>Koruma tedbirlerine itiraz (yakalama, arama, gözaltı)</li>
+        <li>Tutuklamaya itiraz başvurusu</li>
+        <li>Şüpheli veya sanık müdafiiliği</li>
+        <li>İstinaf, temyiz ve kararın düzeltilmesi</li>
+        <li>İnfaz hukuku başvuruları</li>
+      </ul>
+      <span class="faal-toggle">Detaylı Bilgi ↓</span>
+    </div>
+
+    <div class="faal-card reveal" onclick="toggleCard(this)">
+      <div class="faal-num">02</div>
+      <div class="faal-name">Aile Hukuku</div>
+      <p class="faal-desc">Hassasiyet ve özenle yürütülen aile hukuku süreçleri.</p>
+      <ul class="faal-list">
+        <li>Boşanma davaları (çekişmeli ve anlaşmalı)</li>
+        <li>Mal paylaşımı ve miras davaları</li>
+        <li>Velayet ve nafaka davaları</li>
+        <li>Evlat edinme davaları ve hukuki işlemler</li>
+        <li>Aile hukukunda arabuluculuk</li>
+      </ul>
+      <span class="faal-toggle">Detaylı Bilgi ↓</span>
+    </div>
+
+    <div class="faal-card reveal" onclick="toggleCard(this)">
+      <div class="faal-num">03</div>
+      <div class="faal-name">İş Hukuku</div>
+      <p class="faal-desc">İşçi ve işveren arasındaki tüm hukuki ilişkilerin titizlikle yönetimi.</p>
+      <ul class="faal-list">
+        <li>İşe iade davaları</li>
+        <li>Kıdem ve ihbar tazminatları</li>
+        <li>İşçilik alacakları ve fazla mesai</li>
+        <li>İş kazası ve meslek hastalığı davaları</li>
+        <li>Sosyal güvenlik hukuku uyuşmazlıkları</li>
+      </ul>
+      <span class="faal-toggle">Detaylı Bilgi ↓</span>
+    </div>
+
+    <div class="faal-card reveal" onclick="toggleCard(this)">
+      <div class="faal-num">04</div>
+      <div class="faal-name">İcra ve İflas Hukuku</div>
+      <p class="faal-desc">Alacakların tahsili ve borç ilişkilerinin hukuki güvencesi.</p>
+      <ul class="faal-list">
+        <li>İlamlı ve ilamsız icra takipleri</li>
+        <li>Menfi tespit ve istirdat davaları</li>
+        <li>İhalenin feshi davaları</li>
+        <li>İhtiyati haciz</li>
+        <li>Tasarrufun iptali ve istihkak davası</li>
+        <li>Kira alacağı uyuşmazlıkları</li>
+      </ul>
+      <span class="faal-toggle">Detaylı Bilgi ↓</span>
+    </div>
+
+    <div class="faal-card reveal" onclick="toggleCard(this)">
+      <div class="faal-num">05</div>
+      <div class="faal-name">Sigorta Hukuku</div>
+      <p class="faal-desc">Sigorta şirketleriyle yaşanan uyuşmazlıklarda profesyonel temsil.</p>
+      <ul class="faal-list">
+        <li>Trafik kazalarına bağlı tazminat davaları</li>
+        <li>Araç değer kaybı talepleri</li>
+        <li>Sigorta poliçesi kaynaklı uyuşmazlıklar</li>
+        <li>Maddi ve manevi zarar tazminatları</li>
+        <li>Destekten yoksun kalma tazminatları</li>
+      </ul>
+      <span class="faal-toggle">Detaylı Bilgi ↓</span>
+    </div>
+
+    <div class="faal-card reveal" onclick="toggleCard(this)">
+      <div class="faal-num">06</div>
+      <div class="faal-name">Tazminat Uyuşmazlıkları</div>
+      <p class="faal-desc">Maddi ve manevi zararların eksiksiz tazmini için hukuki destek.</p>
+      <ul class="faal-list">
+        <li>Maddi zarar tazminatları</li>
+        <li>Manevi zarar tazminatları</li>
+        <li>Değer kaybı talepleri</li>
+        <li>Destekten yoksun kalma tazminatları</li>
+        <li>Sözleşmeden doğan zararların tazmini</li>
+      </ul>
+      <span class="faal-toggle">Detaylı Bilgi ↓</span>
+    </div>
+
+    <div class="faal-card reveal" onclick="toggleCard(this)">
+      <div class="faal-num">07</div>
+      <div class="faal-name">Ticaret Hukuku</div>
+      <p class="faal-desc">Ticari hayatın güvenli ve sürdürülebilir yönetimi için kapsamlı hukuki çerçeve.</p>
+      <ul class="faal-list">
+        <li>Şirket kuruluşları ve ortaklık yapıları</li>
+        <li>Hisse devirleri ve sermaye işlemleri</li>
+        <li>Ticari sözleşmelerin hazırlanması ve incelenmesi</li>
+        <li>Ticari faaliyetlerden doğan uyuşmazlıklar</li>
+        <li>Önleyici hukuki danışmanlık ve risk analizi</li>
+      </ul>
+      <span class="faal-toggle">Detaylı Bilgi ↓</span>
+    </div>
+
+    <div class="faal-card reveal" onclick="toggleCard(this)">
+      <div class="faal-num">08</div>
+      <div class="faal-name">Vergi ve İdare Hukuku</div>
+      <p class="faal-desc">Vergi incelemeleri ve idari işlemlere karşı etkin hukuki temsil.</p>
+      <ul class="faal-list">
+        <li>Vergi incelemeleri ve denetimleri danışmanlığı</li>
+        <li>Vergi tarhiyatlarına karşı itiraz ve dava</li>
+        <li>Vergi cezalarına karşı itiraz ve ceza iptali</li>
+        <li>Kamu idaresi işlemlerine karşı iptal davaları</li>
+        <li>İdari sözleşmeler ve ruhsat işlemleri</li>
+      </ul>
+      <span class="faal-toggle">Detaylı Bilgi ↓</span>
+    </div>
+
+    <div class="faal-deco reveal">
+      <div class="faal-deco-icon">⚖</div>
+      <p class="faal-deco-text">Güvenilir<br>Şeffaf<br>Çözüm Odaklı</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- İLETİŞİM -->
+<section id="iletisim">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="sec-label">İletişim</p>
+      <h2 class="sec-title">Bizimle<br>İletişime Geçin</h2>
+      <div class="gold-line"></div>
+      <div class="contact-block">
+        <p class="contact-label">Telefon</p>
+        <p class="contact-val"><a href="tel:+905407852525">0540 785 25 25</a></p>
+      </div>
+      <div class="contact-block">
+        <p class="contact-label">E-Posta</p>
+        <p class="contact-val"><a href="mailto:av.hasanpolatkanatalay@gmail.com">av.hasanpolatkanatalay@gmail.com</a></p>
+      </div>
+      <div class="contact-block">
+        <p class="contact-label">Adres</p>
+        <p class="contact-val">Yakutiye / Erzurum<br>Cumhuriyet Cad. Kitap Sarayı<br>Kültür Merkezi, Dış Kapı No:28 Kat:5</p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Adınız</label>
+            <input type="text" placeholder="Ad Soyad" required>
+          </div>
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" placeholder="+90 5__ ___ __ __">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>E-Posta</label>
+          <input type="email" placeholder="ornek@mail.com" required>
+        </div>
+        <div class="form-group">
+          <label>Hukuki Konu</label>
+          <select>
+            <option value="" disabled selected>Alan seçiniz...</option>
+            <option>Ceza Hukuku</option>
+            <option>Aile Hukuku</option>
+            <option>İş Hukuku</option>
+            <option>İcra ve İflas Hukuku</option>
+            <option>Sigorta Hukuku</option>
+            <option>Tazminat Uyuşmazlıkları</option>
+            <option>Ticaret Hukuku</option>
+            <option>Vergi ve İdare Hukuku</option>
+            <option>Diğer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mesajınız</label>
+          <textarea placeholder="Durumunuzu kısaca açıklayınız..."></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Mesaj Gönder</button>
+        <p id="form-success">✓ Mesajınız iletildi. En kısa sürede dönüş yapacağız.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 44" style="height:36px;display:block">
+    <text x="0" y="30" font-family="'Cormorant Garamond',Georgia,serif" font-size="30" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="3">ATALAY</text>
+    <text x="0" y="42" font-family="'Montserrat',Arial,sans-serif" font-size="7" font-weight="400" fill="rgba(184,151,90,0.6)" letter-spacing="3">HUKUK &amp; DANIŞMANLIK</text>
+  </svg>
+  <p class="footer-copy">© 2025 Atalay Hukuk & Danışmanlık · Tüm Hakları Saklıdır</p>
+  <div class="footer-links">
+    <a href="#hero">Ana Sayfa</a>
+    <a href="#faaliyet">Faaliyet</a>
+    <a href="#iletisim">İletişim</a>
+  </div>
+</footer>
+
+<script>
+  // Navbar
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Toggle cards
+  function toggleCard(card) {
+    const open = card.classList.contains('expanded');
+    document.querySelectorAll('.faal-card').forEach(c => {
+      c.classList.remove('expanded');
+      const t = c.querySelector('.faal-toggle');
+      if (t) t.textContent = 'Detaylı Bilgi ↓';
+    });
+    if (!open) {
+      card.classList.add('expanded');
+      const t = card.querySelector('.faal-toggle');
+      if (t) t.textContent = 'Kapat ↑';
+    }
+  }
+
+  // Form
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
+</html>
