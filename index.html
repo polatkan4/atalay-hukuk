@@ -6,7 +6,6 @@
 <title>Atalay Hukuk & Danışmanlık</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ... (Mevcut CSS kodlarınızın aynısı kalacak) ... */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --navy:#1a2744;--navy-dark:#101a30;
@@ -103,7 +102,12 @@ nav.scrolled{padding:10px 60px}
 .faal-card:hover::before{width:100%}
 .faal-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:44px;font-weight:300;color:rgba(184,151,90,.18);line-height:1;margin-bottom:14px}
 .faal-name{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px}
-.faal-desc{font-size:13px;line-height:1.8;color:rgba(255,255,255,.44);font-weight:300;margin-bottom:14px}
+/* Short desc: shown when collapsed */
+.faal-desc-short{font-size:13px;line-height:1.8;color:rgba(255,255,255,.44);font-weight:300;margin-bottom:14px}
+.faal-card.expanded .faal-desc-short{display:none}
+/* Full desc: shown when expanded */
+.faal-desc{font-size:13px;line-height:1.85;color:rgba(255,255,255,.44);font-weight:300;margin-bottom:14px;display:none}
+.faal-card.expanded .faal-desc{display:block}
 .faal-list{list-style:none;display:none}
 .faal-card.expanded .faal-list{display:block}
 .faal-list li{font-size:12px;color:rgba(255,255,255,.36);padding:5px 0 5px 14px;border-bottom:1px solid rgba(255,255,255,.04);position:relative;font-weight:300}
@@ -178,7 +182,6 @@ footer{
   <a href="#hero" style="display:block;">
     <img src="logo.png" alt="Atalay Hukuk Logo" style="height:48px; display:block;">
   </a>
-
   <ul class="nav-links">
     <li><a href="#hero">Ana Sayfa</a></li>
     <li><a href="#faaliyet">Faaliyet Alanlarımız</a></li>
@@ -192,10 +195,8 @@ footer{
   <div class="ring"></div>
   <div class="ring"></div>
   <div class="ring"></div>
-
   <div class="hero-content">
     <img src="logo.png" alt="Atalay Hukuk & Danışmanlık" style="width:200px; margin-bottom:20px; display:block; margin-left:auto; margin-right:auto;">
-
     <div class="hero-divider"></div>
     <p class="hero-tagline"><em>"Adalet, karanlıkta parlayan bir yıldız gibidir."</em></p>
     <p class="hero-sub">Hukuk &amp; Danışmanlık · Erzurum</p>
@@ -221,8 +222,7 @@ footer{
     </div>
     <div class="reveal">
       <div class="about-card">
-        <div class="about-card-ql">"</div>
-        <p class="about-card-text">Adalet, karanlıkta parlayan bir yıldız gibidir. Biz o ışığı müvekkillerimiz için yakarız.</p>
+        <img src="Hasanatalay.png" alt="Av. Hasan Polatkan Atalay" style="width:100%;display:block;margin-bottom:28px;object-fit:cover;">
         <p class="about-card-name">Av. Hasan Polatkan Atalay</p>
       </div>
     </div>
@@ -239,9 +239,11 @@ footer{
 
   <div class="faal-grid">
 
+    <!-- 01 CEZA HUKUKU -->
     <div class="faal-card reveal" onclick="toggleCard(this)">
       <div class="faal-num">01</div>
       <div class="faal-name">Ceza Hukuku</div>
+      <p class="faal-desc-short">Soruşturma ve kovuşturma süreçlerinin her aşamasında kapsamlı hukuki destek.</p>
       <p class="faal-desc">Soruşturma ve kovuşturma süreçlerinin her aşamasında kapsamlı hukuki destek.</p>
       <ul class="faal-list">
         <li>Ağır ceza ve asliye ceza mahkemesi davaları</li>
@@ -255,10 +257,12 @@ footer{
       <span class="faal-toggle">Detaylı Bilgi ↓</span>
     </div>
 
+    <!-- 02 AİLE HUKUKU -->
     <div class="faal-card reveal" onclick="toggleCard(this)">
       <div class="faal-num">02</div>
       <div class="faal-name">Aile Hukuku</div>
-      <p class="faal-desc">Hassasiyet ve özenle yürütülen aile hukuku süreçleri.</p>
+      <p class="faal-desc-short">Hassasiyet ve özenle yürütülen aile hukuku süreçleri.</p>
+      <p class="faal-desc">Aile hukuku, yalnızca hukuki değil aynı zamanda sosyal yönü de güçlü olan bir alandır. Bu nedenle yürütülen süreçlerde hukuki bilginin yanında hassasiyet ve özen büyük önem taşımaktadır.<br><br>Boşanma davaları (çekişmeli ve anlaşmalı), velayet, nafaka, mal paylaşımı ve aile içi uyuşmazlıklara ilişkin süreçler müvekkil odaklı bir yaklaşımla ele alınmaktadır. Her dosya, tarafların özel durumu dikkate alınarak değerlendirilmekte ve en uygun çözüm yolu belirlenmektedir.<br><br>Süreç boyunca müvekkillerin hem hukuki hem de kişisel haklarının korunması hedeflenmekte; gereksiz yıpranmaların önüne geçilmesi adına etkin ve dengeli bir strateji izlenmektedir.</p>
       <ul class="faal-list">
         <li>Boşanma davaları (çekişmeli ve anlaşmalı)</li>
         <li>Mal paylaşımı ve miras davaları</li>
@@ -269,10 +273,12 @@ footer{
       <span class="faal-toggle">Detaylı Bilgi ↓</span>
     </div>
 
+    <!-- 03 İŞ HUKUKU -->
     <div class="faal-card reveal" onclick="toggleCard(this)">
       <div class="faal-num">03</div>
       <div class="faal-name">İş Hukuku</div>
-      <p class="faal-desc">İşçi ve işveren arasındaki tüm hukuki ilişkilerin titizlikle yönetimi.</p>
+      <p class="faal-desc-short">İşçi ve işveren arasındaki tüm hukuki ilişkilerin titizlikle yönetimi.</p>
+      <p class="faal-desc">İş hukuku, çalışma hayatının düzenlenmesi ve taraflar arasındaki dengenin korunması açısından büyük önem taşır. Bu kapsamda işçi ve işveren arasındaki tüm hukuki ilişkiler detaylı şekilde ele alınmaktadır.<br><br>İşe iade davaları, kıdem ve ihbar tazminatları, fazla mesai ve diğer işçilik alacakları ile iş kazaları ve meslek hastalıklarından doğan uyuşmazlıklar titizlikle takip edilmektedir. Ayrıca sosyal güvenlik hukukuna ilişkin ihtilaflarda da müvekkillere hukuki destek sunulmaktadır.<br><br>Her süreçte, mevzuat ve güncel yargı kararları ışığında hareket edilerek müvekkillerin haklarının en etkin şekilde korunması amaçlanmaktadır.</p>
       <ul class="faal-list">
         <li>İşe iade davaları</li>
         <li>Kıdem ve ihbar tazminatları</li>
@@ -283,10 +289,12 @@ footer{
       <span class="faal-toggle">Detaylı Bilgi ↓</span>
     </div>
 
+    <!-- 04 İCRA VE İFLAS HUKUKU -->
     <div class="faal-card reveal" onclick="toggleCard(this)">
       <div class="faal-num">04</div>
       <div class="faal-name">İcra ve İflas Hukuku</div>
-      <p class="faal-desc">Alacakların tahsili ve borç ilişkilerinin hukuki güvencesi.</p>
+      <p class="faal-desc-short">Alacakların tahsili ve borç ilişkilerinin hukuki güvencesi.</p>
+      <p class="faal-desc">İcra ve iflas hukuku, alacakların tahsili ve borç ilişkilerinin hukuki güvence altına alınması açısından önemli bir alandır. Bu kapsamda icra takipleri ve iflas süreçleri planlı ve sistematik bir şekilde yürütülmektedir.<br><br>İlamsız ve ilamlı icra takipleri, borca itiraz ve itirazın kaldırılması davaları, haciz işlemleri ve iflas prosedürleri müvekkil menfaatleri doğrultusunda titizlikle takip edilmektedir.<br><br>Süreçlerin hızlı ve etkin şekilde sonuçlandırılması, gereksiz zaman kayıplarının önlenmesi ve alacakların en kısa sürede tahsil edilmesi temel hedefler arasında yer almaktadır.</p>
       <ul class="faal-list">
         <li>İlamlı ve ilamsız icra takipleri</li>
         <li>Menfi tespit ve istirdat davaları</li>
@@ -298,10 +306,12 @@ footer{
       <span class="faal-toggle">Detaylı Bilgi ↓</span>
     </div>
 
+    <!-- 05 SİGORTA HUKUKU -->
     <div class="faal-card reveal" onclick="toggleCard(this)">
       <div class="faal-num">05</div>
       <div class="faal-name">Sigorta Hukuku</div>
-      <p class="faal-desc">Sigorta şirketleriyle yaşanan uyuşmazlıklarda profesyonel temsil.</p>
+      <p class="faal-desc-short">Sigorta şirketleriyle yaşanan uyuşmazlıklarda profesyonel temsil.</p>
+      <p class="faal-desc">Sigorta hukuku, bireylerin ve kurumların uğradıkları zararların giderilmesi açısından kritik bir rol oynamaktadır. Bu kapsamda sigorta şirketleri ile yaşanan uyuşmazlıklar detaylı şekilde analiz edilerek hukuki süreçler yürütülmektedir.<br><br>Trafik kazalarından doğan maddi ve manevi tazminat talepleri, araç değer kaybı, destekten yoksun kalma tazminatı ve sigorta poliçelerinden kaynaklanan ihtilaflar profesyonel bir yaklaşımla ele alınmaktadır.<br><br>Amaç, müvekkillerin uğradığı zararların eksiksiz ve en kısa sürede tazmin edilmesini sağlamaktır.</p>
       <ul class="faal-list">
         <li>Trafik kazalarına bağlı tazminat davaları</li>
         <li>Araç değer kaybı talepleri</li>
@@ -312,10 +322,12 @@ footer{
       <span class="faal-toggle">Detaylı Bilgi ↓</span>
     </div>
 
+    <!-- 06 TAZMİNAT UYUŞMAZLIKLARI -->
     <div class="faal-card reveal" onclick="toggleCard(this)">
       <div class="faal-num">06</div>
       <div class="faal-name">Tazminat Uyuşmazlıkları</div>
-      <p class="faal-desc">Maddi ve manevi zararların eksiksiz tazmini için hukuki destek.</p>
+      <p class="faal-desc-short">Maddi ve manevi zararların eksiksiz tazmini için hukuki destek.</p>
+      <p class="faal-desc">Atalay Hukuk & Danışmanlık, tazminat hukuku alanında maddi ve manevi zararların tazmini, değer kaybı ve destekten yoksun kalma davaları için profesyonel hukuki danışmanlık sunmaktadır.<br><br>Tazminat hukukunda amaç, müvekkillerin uğradığı zararların eksiksiz şekilde karşılanmasını sağlamaktır.</p>
       <ul class="faal-list">
         <li>Maddi zarar tazminatları</li>
         <li>Manevi zarar tazminatları</li>
@@ -326,10 +338,12 @@ footer{
       <span class="faal-toggle">Detaylı Bilgi ↓</span>
     </div>
 
+    <!-- 07 TİCARET HUKUKU -->
     <div class="faal-card reveal" onclick="toggleCard(this)">
       <div class="faal-num">07</div>
       <div class="faal-name">Ticaret Hukuku</div>
-      <p class="faal-desc">Ticari hayatın güvenli ve sürdürülebilir yönetimi için kapsamlı hukuki çerçeve.</p>
+      <p class="faal-desc-short">Ticari hayatın güvenli ve sürdürülebilir yönetimi için kapsamlı hukuki çerçeve.</p>
+      <p class="faal-desc">Ticaret hukuku, ticari hayatın güvenli ve sürdürülebilir şekilde yürütülmesi açısından büyük önem taşımaktadır. Bu kapsamda şirketler hukuku ve ticari işlemler geniş bir perspektifle ele alınmaktadır.<br><br>Şirket kuruluşları, ortaklık yapılarının oluşturulması, hisse devirleri, ticari sözleşmelerin hazırlanması ve incelenmesi ile ticari faaliyetlerden doğan uyuşmazlıklar hukuki çerçevede değerlendirilmektedir.<br><br>Ayrıca, şirketlerin karşılaşabileceği hukuki risklerin önceden tespit edilmesi ve önleyici hukuki danışmanlık sağlanması yoluyla, ticari faaliyetlerin güvenli şekilde sürdürülmesi hedeflenmektedir.</p>
       <ul class="faal-list">
         <li>Şirket kuruluşları ve ortaklık yapıları</li>
         <li>Hisse devirleri ve sermaye işlemleri</li>
@@ -340,10 +354,12 @@ footer{
       <span class="faal-toggle">Detaylı Bilgi ↓</span>
     </div>
 
+    <!-- 08 VERGİ VE İDARE HUKUKU -->
     <div class="faal-card reveal" onclick="toggleCard(this)">
       <div class="faal-num">08</div>
       <div class="faal-name">Vergi ve İdare Hukuku</div>
-      <p class="faal-desc">Vergi incelemeleri ve idari işlemlere karşı etkin hukuki temsil.</p>
+      <p class="faal-desc-short">Vergi incelemeleri ve idari işlemlere karşı etkin hukuki temsil.</p>
+      <p class="faal-desc">Vergi ve idare hukuku, müvekkillerin hem bireysel hem de ticari faaliyetlerini doğrudan etkileyen kritik bir alan olarak öne çıkar. Atalay Hukuk & Danışmanlık olarak, bu alanda müvekkillerin haklarını korumak ve idari işlemlerden doğabilecek riskleri minimize etmek amacıyla etkin çözümler sunmaktayız.<br><br>Vergi hukuku kapsamında, müvekkillerimizin karşılaştığı vergi incelemeleri, tarhiyatlar ve cezai uygulamalara karşı hukuki temsil sağlanır.<br><br>İdare hukuku alanında ise kamu idaresi tarafından yapılan işlem ve uygulamalara karşı dava açma, itiraz etme ve süreçleri yönetme konularında profesyonel destek sunulmaktadır.</p>
       <ul class="faal-list">
         <li>Vergi incelemeleri ve denetimleri danışmanlığı</li>
         <li>Vergi tarhiyatlarına karşı itiraz ve dava</li>
